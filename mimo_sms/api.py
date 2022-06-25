@@ -86,7 +86,7 @@ class MimoMessage(Mimo):
     def __init__(self):
         super().__init__()
 
-    def send(self, sender: str, recipients: list, text, /) -> int:
+    def send(self, sender: str, recipients: list, text) -> int:
         """Send messages for an list of recipients."""
         url = self._make_url('message/send')
         receivers = self._join(recipients)
