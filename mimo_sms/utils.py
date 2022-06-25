@@ -65,11 +65,8 @@ def send_sms(**payload):
         list_items = []
         items = res.get('recipients')
         for item in items:
-            recipient_obj = Recipient()
-            recipient_obj.message_id = message_obj.id
-            recipient_obj.message_id = item.get('messageId')
-            recipient_obj.phone = item.get('phone')
-            recipient_obj.status = item.get('status')
+            item.update(message=message_obj)
+            recipient_obj = Recipient(**item)
             list_items.append(recipient_obj)
         Recipient.objects.bulk_create(list_items)
         return message_obj
